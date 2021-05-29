@@ -1,0 +1,25 @@
+<mat-card>
+    <form #noteForm="ngForm">
+
+        <mat-card-title>
+            <mat-form-field floatLabel="never">
+                <input type="text" matInput placeholder="Title" [(ngModel)]="note.title" name="title" />
+            </mat-form-field>
+        </mat-card-title>
+
+
+        <mat-card-content>
+            <mat-form-field floatLabel="never">
+                <textarea type="text" matInput placeholder="Content" [(ngModel)]="note.content"
+                    name="content"></textarea>
+
+            </mat-form-field>
+        </mat-card-content>
+    </form>
+
+
+    <mat-card-actions>
+        <button mat-raised-button color="primary">Delete</button>
+        <button mat-raised-button color="primary" (click)="logData(noteForm)">Test</button>
+    </mat-card-actions>
+</mat-card>
