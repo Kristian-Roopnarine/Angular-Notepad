@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Note } from 'src/app/models/note.model';
 
@@ -8,7 +8,8 @@ import { Note } from 'src/app/models/note.model';
   styleUrls: ['./note-detail.component.scss'],
 })
 export class NoteDetailComponent implements OnInit {
-  note = new Note('This is a test', 'This is a test note', 1);
+  @Input() note!: Note;
+  @Output() delete = new EventEmitter<number>();
 
   constructor() {}
 
@@ -16,5 +17,9 @@ export class NoteDetailComponent implements OnInit {
 
   logData(noteData: NgForm) {
     console.log(noteData.form.value);
+  }
+
+  deleteClick(id: number) {
+    this.delete.emit(id);
   }
 }

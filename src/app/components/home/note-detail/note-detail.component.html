@@ -19,7 +19,7 @@
 
 
     <mat-card-actions>
-        <button mat-raised-button color="primary">Delete</button>
+        <button mat-raised-button color="primary" (click)="deleteClick(note.id)">Delete</button>
         <button mat-raised-button color="primary" (click)="logData(noteForm)">Test</button>
     </mat-card-actions>
 </mat-card>
