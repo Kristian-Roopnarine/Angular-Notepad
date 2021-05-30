@@ -27,4 +27,8 @@ export class HomeComponent implements OnInit {
     console.log(id);
     this.dataStorage.deleteNote(id);
   }
+
+  updateNote(note: Note) {
+    this.dataStorage.updateNote(note);
+  }
 }

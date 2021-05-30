@@ -34,6 +34,14 @@ export class DataStorageService {
     this.updateLocalStorage(filteredNotes);
   }
 
+  updateNote(note: Note) {
+    const currentNotes = this.noteSubject.getValue();
+    const noteIdx = currentNotes.findIndex((n) => n.id === note.id);
+    currentNotes.splice(noteIdx, 1, note);
+    this.noteSubject.next(currentNotes);
+    this.updateLocalStorage(currentNotes);
+  }
+
   updateLocalStorage(newNotes: Note[]) {
     window.localStorage.setItem('notes', JSON.stringify(newNotes));
     console.log(window.localStorage);

@@ -5,7 +5,8 @@
 
 <ng-container *ngIf="notes$ | async as notes">
     <div style="display:flex;flex-wrap: wrap;">
-        <app-note-detail *ngFor="let note of notes;let i=index" [note]="note" (delete)="deleteNote($event)">
+        <app-note-detail *ngFor="let note of notes;let i=index" [note]="note" (delete)="deleteNote($event)"
+            (update)="updateNote($event)">
         </app-note-detail>
     </div>
 
