@@ -44,6 +44,5 @@ export class DataStorageService {
 
   updateLocalStorage(newNotes: Note[]) {
     window.localStorage.setItem('notes', JSON.stringify(newNotes));
-    console.log(window.localStorage);
   }
 }

@@ -31,7 +31,7 @@ export class NoteDetailComponent implements OnInit {
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
-        tap((data) => this.updateNote({ id: this.note.id, ...data }))
+        tap((data) => this.updateNote(this.note))
       )
       .subscribe();
   }
