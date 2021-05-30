@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   constructor(private dataStorage: DataStorageService) {}
 
   ngOnInit(): void {
+    this.dataStorage.fetchFromStorage();
     this.notes$ = this.dataStorage.notes$;
   }
 

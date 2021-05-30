@@ -10,23 +10,32 @@ export class DataStorageService {
   notes$: Observable<Note[]> = this.noteSubject.asObservable();
   constructor() {}
 
-  fetchFromStorage(key: string, defaultVal: any) {
-    let localStorage = window.localStorage;
-    if (!localStorage.getItem(key)) {
-      localStorage.setItem(key, JSON.stringify(defaultVal));
+  fetchFromStorage() {
+    console.log('fetching from storage');
+    const noteStorage = window.localStorage.getItem('notes');
+    if (!noteStorage) {
+      console.log('No notes in storage');
+      return;
     }
-    return JSON.parse(window.localStorage.getItem('notes')!);
+    this.noteSubject.next(JSON.parse(noteStorage));
   }
 
   addNote(note: Note) {
     const currentNotes = this.noteSubject.getValue();
     const newNotes = [...currentNotes, note];
     this.noteSubject.next(newNotes);
+    this.updateLocalStorage(newNotes);
   }
 
   deleteNote(id: number) {
     const currentNotes = this.noteSubject.getValue();
     const filteredNotes = currentNotes.filter((n) => n.id !== id);
     this.noteSubject.next(filteredNotes);
+    this.updateLocalStorage(filteredNotes);
+  }
+
+  updateLocalStorage(newNotes: Note[]) {
+    window.localStorage.setItem('notes', JSON.stringify(newNotes));
+    console.log(window.localStorage);
   }
 }
