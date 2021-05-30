@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Note } from 'src/app/models/note.model';
 import { DataStorageService } from 'src/app/services/data-storage.service';
 
@@ -15,16 +16,15 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.dataStorage.fetchFromStorage();
     this.notes$ = this.dataStorage.notes$;
+    this.notes$.pipe(tap(console.log));
   }
 
   addNewNote() {
     const newNote = new Note();
-    console.log({ newNote });
     this.dataStorage.addNote(newNote);
   }
 
   deleteNote(id: number) {
-    console.log(id);
     this.dataStorage.deleteNote(id);
   }
 
